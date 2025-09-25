@@ -1,0 +1,6 @@
+{
+    "standard_ip_lookup": {
+        "lookup": "/{ip_address}",
+        "hostname": "/{ip_address}?hostname=1"
+    }
+}
