@@ -11,8 +11,8 @@ class IpStackClient(BaseRequest):
     """Client for interacting with the IP Stack API."""
 
     def __init__(self):
-        super().__init__(base_url=Configs.get().IP_STACK_BASE_URL)
-        self._access_key = Configs.get().IP_STACK_ACCESS_KEY
+        super().__init__(base_url=Configs().IP_STACK_BASE_URL)
+        self._access_key = Configs().IP_STACK_ACCESS_KEY
 
     def get_basic_standard_ip_lookup(self, ip_address: str) -> Response:
         """Get basic standard IP lookup information.

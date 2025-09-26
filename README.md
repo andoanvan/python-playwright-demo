@@ -4,33 +4,45 @@ A comprehensive test automation framework using Python, Pytest, and Playwright f
 
 ## 📁 Project Structure
 ```
-python-demo/
-├── api/                    # API implementations
-│   ├── clients/           # API client implementations
-│   ├── endpoints/         # API endpoint definitions
-│   └── models/           # API data models
-│       └── response/     # Response models
+python-playwright-demo/
 ├── configs/              # Configuration management
-│   └── __init__.py      # Config loader
+│   ├── configs.py       # Configuration classes
+│   └── .env.dev         # Environment variables
 ├── constants/           # Constant definitions
 ├── core/               # Core framework components
-│   ├── api/           # Base API functionality
-│   ├── page/          # Base page functionality
-│   └── utils/         # Core utilities
-├── data/              # Test data files
-├── pages/             # Page Objects
-│   ├── locators/     # Page element locators
-│   ├── google_page.py # Google page implementation
-│   └── pages/        # Additional page objects
-├── tests/            # Test suites
-│   ├── api/         # API tests
-│   │   └── test_ip_stack.py  # IP Stack API tests
-│   ├── test_google.py    # Google search tests
-│   └── test_saucedemo.py # SauceDemo tests
-├── conftest.py      # Pytest configuration
-├── pytest.ini      # Pytest settings
-├── reports/       # Test reports
-└── requirements.txt # Dependencies
+│   ├── api/            # Base API functionality
+│   ├── db/             # Database functionality
+│   ├── page/           # Base page functionality
+│   └── utils/          # Core utilities
+├── data/               # Test data files
+│   ├── endpoints/      # API endpoint definitions
+│   └── test_data/      # Test data files
+├── pages/              # Page Objects
+│   ├── locators/       # Page element locators
+│   └── pages/          # Page object implementations
+├── services/            # Business logic and data access
+│   ├── api/            # API services
+│   │   ├── clients/    # API client implementations
+│   │   ├── endpoints/  # API endpoint definitions
+│   │   └── models/     # API data models
+│   ├── controllers/    # Business logic controllers
+│   └── db/             # Database services
+│       ├── entites/    # Database entities
+│       └── mock_data/  # Mock data clients
+├── tests/              # Test suites
+│   ├── api/            # API tests
+│   └── ui/             # UI tests
+├── reports/            # Test reports
+│   ├── allure/         # Allure reports
+│   ├── html/           # HTML reports
+│   ├── screenshots/    # Test failure screenshots
+│   └── videos/         # Test execution videos
+├── venv311/            # Virtual environment
+├── conftest.py         # Pytest configuration
+├── pytest.ini         # Pytest settings
+├── docker-compose.yml  # Docker configuration
+├── requirements.txt    # Dependencies
+└── README.md           # Project documentation
 ```
 
 ## 🧰 Requirements
@@ -137,6 +149,7 @@ def test_ip_lookup(self):
 - ✅ Clean and maintainable test structure
 - ✅ API testing with request/response models
 - ✅ Structured API client architecture
+
 
 ## 🔧 Troubleshooting
 

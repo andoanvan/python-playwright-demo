@@ -1,35 +1,11 @@
 """Pytest configuration and fixtures."""
 
-import os
-import platform
 from datetime import datetime
 
 import allure
 import pytest
 
 from configs.configs import Configs
-
-
-@pytest.hookimpl(optionalhook=True)
-def pytest_html_report_title(report):
-    """Set the title of the html report."""
-    report.title = "Test Automation Report"
-
-
-def pytest_configure(config):
-    """Add environment info to HTML report."""
-    # Create reports directory
-    os.makedirs("reports", exist_ok=True)
-
-    # Add environment info
-    config.stash["metadata"] = {
-        "Project Name": "Python Demo",
-        "Environment": os.getenv("ACTIVE_ENV", "dev"),
-        "Base URL": Configs.get().BASE_URL,
-        "Python Version": platform.python_version(),
-        "Platform": platform.platform(),
-        "Headless": str(not bool(config.getoption("--headed"))),
-    }
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)

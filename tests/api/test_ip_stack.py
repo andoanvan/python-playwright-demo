@@ -1,12 +1,7 @@
 """Tests for IP Stack API."""
 
-import allure
 import pytest
 
-from services.api.models.response.standard_ip_lookup.hostname_response_model import (
-    HostnameResponse,
-)
-from services.api.models.response.standard_ip_lookup.ip_response_model import IPResponse
 from services.controllers.ip_stack_controllers import IPStackController
 
 

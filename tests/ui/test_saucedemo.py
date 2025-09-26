@@ -17,7 +17,7 @@ class TestSauceDemo(BaseTest):
         """Setup runs before each test."""
         self.login_page = LoginPage(page)
         self.home_page = HomePage(page)
-        self.login_page.goto(Configs.get().BASE_URL)
+        self.login_page.goto(Configs().BASE_URL)
 
     def test_login(self):
         """Test the login functionality."""

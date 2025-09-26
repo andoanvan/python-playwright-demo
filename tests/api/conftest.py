@@ -1,38 +1,22 @@
 """Pytest configuration and fixtures."""
 
-import os
-import platform
-
 import pytest
+from core.db.postgres_client import PostgresClient
 
 from configs.configs import Configs
 
 
-@pytest.hookimpl(optionalhook=True)
-def pytest_html_report_title(report):
-    """Set the title of the html report."""
-    report.title = "Test Automation Report"
+@pytest.fixture(scope="session")
+def db_client():
+    """Fixture to provide a database client."""
 
+    db = PostgresClient(
+        host=Configs().DB_HOST,
+        port=Configs().DB_PORT,
+        user=Configs().DB_USER,
+        password=Configs().DB_PASSWORD,
+        db=Configs().DB_NAME,
+    )  # Ensure to close the connection after tests are done
 
-def pytest_configure(config):
-    """Add environment info to HTML report."""
-    # Create reports directory
-    os.makedirs("reports/html", exist_ok=True)
-
-    # Add environment info
-    config.stash["metadata"] = {
-        "Project Name": "Python Demo",
-        "Environment": os.getenv("ACTIVE_ENV", "dev"),
-        "Base URL": Configs.get().IP_STACK_BASE_URL,
-        "Python Version": platform.python_version(),
-        "Platform": platform.platform(),
-        "Headless": str(not bool(config.getoption("--headed"))),
-    }
-
-
-def pytest_metadata(metadata):
-    metadata.pop("JAVA_HOME", None)
-    metadata.pop("Plugins", None)
-    metadata.pop("Packages", None)
-    metadata.pop("Platform", None)
-    metadata.pop("Python", None)
+    yield db
+    db.close()

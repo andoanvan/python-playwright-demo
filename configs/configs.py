@@ -29,6 +29,12 @@ class Configs:
     API_RETRY_COUNT: int
     API_DEBUG: bool
 
+    DB_HOST: str
+    DB_PORT: int
+    DB_USER: str
+    DB_PASSWORD: str
+    DB_NAME: str
+
     _instance: Optional["Configs"] = None
 
     def __init__(self):
@@ -66,10 +72,15 @@ class Configs:
         self.API_TIMEOUT = int(os.getenv("API_TIMEOUT", "30"))
         self.API_RETRY_COUNT = int(os.getenv("API_RETRY_COUNT", "3"))
         self.API_DEBUG = os.getenv("API_DEBUG", "false").lower() == "true"
+        # Database Configuration
+        self.DB_HOST = os.getenv("DB_HOST", "localhost")
+        self.DB_PORT = int(os.getenv("DB_PORT", ""))
+        self.DB_USER = os.getenv("DB_USER", "")
+        self.DB_PASSWORD = os.getenv("DB_PASSWORD", "")
+        self.DB_NAME = os.getenv("DB_NAME", "")
 
-    @classmethod
-    def get(cls) -> "Configs":
+    def __new__(cls):
         """Get singleton instance of Configs."""
         if not cls._instance:
-            cls._instance = Configs()
+            cls._instance = super(Configs, cls).__new__(cls)
         return cls._instance

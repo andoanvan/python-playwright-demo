@@ -17,8 +17,8 @@ class LoginPage(BasePage):
 
     @allure.step("Perform login")
     def login(self):
-        self.fill_username(Configs.get().AUTH_USERNAME)
-        self.fill_password(Configs.get().AUTH_PASSWORD)
+        self.fill_username(Configs().AUTH_USERNAME)
+        self.fill_password(Configs().AUTH_PASSWORD)
         self.click_login_button()
         return self
 
