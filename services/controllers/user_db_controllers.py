@@ -13,3 +13,8 @@ class UserController:
     def get_all_user_entities(self) -> List[UserEntity]:
         result = UserDBClient(self.db_client).get_all_users()
         return [UserEntity(*r) for r in result]  # Alternative unpacking method
+
+    @allure.step("Get user entity by id")
+    def get_user_entity_by_id(self, id: int) -> UserEntity:
+        result = UserDBClient(self.db_client).get_user_by_id(id)
+        return UserEntity(*result)
